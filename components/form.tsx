@@ -13,7 +13,7 @@ import {
   FaUserTimes,
   FaHeartBroken,
 } from "react-icons/fa";
-import { FaCreditCard, FaCircleQuestion } from "react-icons/fa6";
+import { FaCreditCard, FaCircleQuestion, FaSpinner } from "react-icons/fa6";
 import { Slider } from "@/components/ui/slider";
 import { RiKnifeFill } from "react-icons/ri";
 import { Button } from "./ui/button";
@@ -21,8 +21,12 @@ import Link from "next/link";
 import { calCompensation } from "@/utils/compensation";
 import { addMessage } from "@/app/actions/add-message";
 import { useRouter } from "next/navigation";
+import { Slide, toast } from "react-toastify";
+import { useState } from "react";
 
 export default function GeneratePayMentForm() {
+  const [submitting, setSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -34,8 +38,35 @@ export default function GeneratePayMentForm() {
 
   const router = useRouter();
 
+  const successToast = () =>
+    toast.success("😁Receipt Created", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Slide,
+    });
+
+  const errorToast = (msg: string) =>
+    toast.error(msg, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Slide,
+    });
+
   async function onFormSubmit(formData: formValidatorType) {
     try {
+      setSubmitting(true);
       const cal = calCompensation(
         Number(formData.timeInvested),
         Number(formData.moneySpent),
@@ -48,10 +79,13 @@ export default function GeneratePayMentForm() {
 
       if (response.status !== 200) throw new Error(response.message);
 
+      successToast();
       reset();
       router.push(`/generate/success?id=${response.data?.id}`);
     } catch (error) {
-      console.log(error);
+      errorToast((error as Error).message);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -147,6 +181,7 @@ export default function GeneratePayMentForm() {
             <Slider
               {...register("emotionalDamage", { valueAsNumber: true })}
               defaultValue={[1]}
+              min={1}
               max={10}
               step={1}
             />
@@ -165,6 +200,7 @@ export default function GeneratePayMentForm() {
             <Slider
               {...register("betrayal", { valueAsNumber: true })}
               defaultValue={[0]}
+              min={0}
               max={5}
               step={1}
             />
@@ -188,8 +224,15 @@ export default function GeneratePayMentForm() {
             <p className="text-red-500 text-sm">{errors.reason.message}</p>
           )}
         </div>
-        <Button className="bg-customBtnPink hover:bg-customBtnPink">
-          <p>Create Refund Form</p>
+        <Button
+          className="bg-customBtnPink hover:bg-customBtnPink"
+          disabled={submitting}
+        >
+          {submitting ? (
+            <FaSpinner className="text-center animate-spin" />
+          ) : (
+            <p>Create Refund Form</p>
+          )}
         </Button>
       </form>
     </div>

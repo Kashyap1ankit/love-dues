@@ -10,7 +10,7 @@ export default function SuccessfullyGenerated() {
   const searchParams = useSearchParams();
   const messageId = searchParams.get("id") || "";
   const clientUrl = process.env.NEXT_PUBLIC_BASE_CLIENT_URL || "";
-  const link = `${clientUrl} / ${messageId}`;
+  const link = `${clientUrl}/${messageId}`;
   const [copyClicked, setCopyClicked] = useState(false);
 
   function handleCopy() {
