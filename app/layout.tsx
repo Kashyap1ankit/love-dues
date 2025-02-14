@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Slide, ToastContainer } from "react-toastify";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Love Dues",
@@ -17,7 +18,7 @@ export default function RootLayout({
       <body
         className={`w-11/12 md:max-w-7xl  mx-auto antialiased bg-gradient-to-l from-customLightPink to-customPink mt-12 md:mt-24`}
       >
-        {children}
+        <Suspense> {children}</Suspense>
         <ToastContainer
           position="bottom-right"
           autoClose={3000}
