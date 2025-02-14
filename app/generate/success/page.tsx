@@ -6,6 +6,19 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  RedditShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  LinkedinIcon,
+  RedditIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
+
 export default function SuccessfullyGenerated() {
   const searchParams = useSearchParams();
   const messageId = searchParams.get("id") || "";
@@ -22,7 +35,7 @@ export default function SuccessfullyGenerated() {
   }
 
   return (
-    <div className="bg-customFormPink p-4  md:p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4">
+    <div className="bg-customFormPink p-4  md:p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4 w-11/12 md:w-fit mx-auto max-w-7xl">
       <IoCheckmarkCircleSharp className="size-16 fill-green-800 mx-auto" />
 
       <p>
@@ -43,6 +56,32 @@ export default function SuccessfullyGenerated() {
           ) : (
             <Copy className="cursor-pointer" onClick={handleCopy} />
           )}
+        </div>
+      </div>
+
+      <div>
+        <p className="text-center text-xl mb-4 ">Share to</p>
+
+        <div className="flex gap-4 justify-between">
+          <WhatsappShareButton url={link}>
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+
+          <TwitterShareButton url={link}>
+            <TwitterIcon size={32} round={true} />
+          </TwitterShareButton>
+
+          <LinkedinShareButton url={link}>
+            <LinkedinIcon size={32} round={true} />
+          </LinkedinShareButton>
+
+          <FacebookShareButton url={link}>
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+
+          <RedditShareButton url={link}>
+            <RedditIcon size={32} round={true} />
+          </RedditShareButton>
         </div>
       </div>
 

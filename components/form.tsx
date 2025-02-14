@@ -90,7 +90,7 @@ export default function GeneratePayMentForm() {
   }
 
   return (
-    <div>
+    <div className="w-11/12 mx-auto max-w-7xl">
       <form
         onSubmit={handleSubmit(onFormSubmit)}
         className="bg-customFormPink p-4 md:p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4"

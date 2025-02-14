@@ -39,7 +39,7 @@ export default function RefundId() {
       {loading ? (
         <div>Loading....</div>
       ) : (
-        <div>
+        <div className="w-11/12 mx-auto max-w-7xl">
           <div className="flex justify-end mb-12 md:mb-0">
             <Link href={"/generate"}>
               <Button>Make a receipt for your ex</Button>
