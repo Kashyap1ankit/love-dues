@@ -3,7 +3,7 @@ import "./globals.css";
 import { Slide, ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
-  title: "ValBreak",
+  title: "Love Dues",
   description: "Get Insaaf",
 };
 
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` max-w-7xl  mx-auto antialiased bg-gradient-to-l from-customLightPink to-customPink mt-24`}
+        className={`w-11/12 md:max-w-7xl  mx-auto antialiased bg-gradient-to-l from-customLightPink to-customPink mt-12 md:mt-24`}
       >
         {children}
         <ToastContainer

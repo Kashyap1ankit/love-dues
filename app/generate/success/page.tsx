@@ -10,7 +10,7 @@ export default function SuccessfullyGenerated() {
   const searchParams = useSearchParams();
   const messageId = searchParams.get("id") || "";
   const clientUrl = process.env.NEXT_PUBLIC_BASE_CLIENT_URL || "";
-  const link = `${clientUrl}/${messageId}`;
+  const link = `${clientUrl}/refund/${messageId}`;
   const [copyClicked, setCopyClicked] = useState(false);
 
   function handleCopy() {
@@ -22,7 +22,7 @@ export default function SuccessfullyGenerated() {
   }
 
   return (
-    <div className="bg-customFormPink p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4">
+    <div className="bg-customFormPink p-4  md:p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4">
       <IoCheckmarkCircleSharp className="size-16 fill-green-800 mx-auto" />
 
       <p>
@@ -30,15 +30,20 @@ export default function SuccessfullyGenerated() {
         Generated🥳{" "}
       </p>
 
-      <div className="flex justify-between items-center bg-customPink p-4 rounded-lg">
-        <Link href={link} className="hover:text-blue-500">
+      <div className="flex items-center justify-between bg-customPink p-4 rounded-lg flex-wrap">
+        <Link
+          href={link}
+          className="hover:text-blue-500 truncate min-w-0 max-w-[80%]"
+        >
           {link.slice(0, 50)}
         </Link>
-        {copyClicked ? (
-          <CopyCheck className="text-green-500" />
-        ) : (
-          <Copy className="cursor-pointer" onClick={handleCopy} />
-        )}
+        <div className="flex-shrink-0">
+          {copyClicked ? (
+            <CopyCheck className="text-green-500" />
+          ) : (
+            <Copy className="cursor-pointer" onClick={handleCopy} />
+          )}
+        </div>
       </div>
 
       <Link

@@ -93,9 +93,9 @@ export default function GeneratePayMentForm() {
     <div>
       <form
         onSubmit={handleSubmit(onFormSubmit)}
-        className="bg-customFormPink p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4"
+        className="bg-customFormPink p-4 md:p-12 rounded-lg max-w-xl mx-auto flex flex-col gap-6 border-2 border-customBtnPink mb-4"
       >
-        <div className="flex justify-start gap-24 ">
+        <div className="flex justify-start gap-4 md:gap-24 ">
           <Link href={"/"}>
             <FaArrowLeft />
           </Link>
@@ -134,7 +134,7 @@ export default function GeneratePayMentForm() {
           )}
         </div>
 
-        <div className="md:flex  gap-8">
+        <div className="flex flex-col md:flex-row gap-6">
           <div className="flex flex-col gap-2">
             <label className="flex gap-2 items-center  font-bold ">
               <FaClock />
@@ -172,7 +172,7 @@ export default function GeneratePayMentForm() {
           </div>
         </div>
 
-        <div className="md:flex  gap-8">
+        <div className="flex flex-col md:flex-row gap-6">
           <div className="flex flex-col gap-2 w-full">
             <label className="flex gap-2 items-center  font-bold ">
               <FaHeartBroken />

@@ -34,3 +34,25 @@ export async function addMessage(formData: formValidatorType) {
     };
   }
 }
+
+export async function checkForRefundId(id: string) {
+  try {
+    const isInDb = await prisma.receipt.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!isInDb) throw new Error("No such refund if found in db");
+
+    return {
+      status: 200,
+      data: isInDb,
+    };
+  } catch {
+    return {
+      status: 400,
+      data: null,
+    };
+  }
+}

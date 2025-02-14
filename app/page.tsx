@@ -8,23 +8,23 @@ import { IoMdMail } from "react-icons/io";
 export default function Home() {
   return (
     <div>
-      <div className="flex justify-between  items-center">
-        <div className=" w-1/2">
-          <p className={`${signika.className} text-6xl font-bold `}>
+      <div className="flex flex-col-reverse sm:flex-row justify-between  items-center">
+        <div className=" sm:w-1/2">
+          <p className={`${signika.className} text-5xl md:text-6xl font-bold `}>
             <span className=" bg-gradient-to-r from-red-500 to-red-600 text-transparent bg-clip-text">
               Wasted
             </span>{" "}
             Time on Ex? File a Refund Now!
           </p>
 
-          <Link href={"/generate"}>
-            <Button className="mt-12 bg-customBtnPink text-white hover:bg-customBtnPink">
+          <Link href={"/generate"} className="flex justify-center sm:block">
+            <Button className="mt-12 bg-customBtnPink text-white hover:bg-customBtnPink w-full sm:w-fit">
               Create Refund Form
             </Button>
           </Link>
         </div>
 
-        <div className=" w-1/2 ">
+        <div className=" sm:w-1/2 ">
           <Image
             src={"/hero.png"}
             width={500}
