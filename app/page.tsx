@@ -7,7 +7,7 @@ import { IoMdMail } from "react-icons/io";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto w-11/12 max-w-7xl ">
       <div className="flex flex-col-reverse sm:flex-row justify-between  items-center">
         <div className=" sm:w-1/2">
           <p className={`${signika.className} text-5xl md:text-6xl font-bold `}>
