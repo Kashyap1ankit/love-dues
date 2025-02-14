@@ -10,13 +10,13 @@ datasource db {
 model Receipt {
   id           String   @id @default(uuid())
   name         String
-  ex           String
+  exName           String
   timeInvested Int
   moneySpent   Int
-  emotional    Int
+  emotionalDamage    Int
   betrayal     Int
   reason       String
-  compensation Int
+  compensation Int?
   createdAt    DateTime  @default(now())
   updateAt     DateTime  @updatedAt
 }

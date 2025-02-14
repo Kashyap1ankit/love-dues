@@ -18,21 +18,38 @@ import { Slider } from "@/components/ui/slider";
 import { RiKnifeFill } from "react-icons/ri";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { calCompensation } from "@/utils/compensation";
+import { addMessage } from "@/app/actions/add-message";
+import { useRouter } from "next/navigation";
 
 export default function GeneratePayMentForm() {
   const {
     register,
-    reset,
     handleSubmit,
-    setValue,
+    reset,
     formState: { errors },
   } = useForm<formValidatorType>({
     resolver: zodResolver(formValidator),
   });
 
+  const router = useRouter();
+
   async function onFormSubmit(formData: formValidatorType) {
     try {
-      console.log(formData);
+      const cal = calCompensation(
+        Number(formData.timeInvested),
+        Number(formData.moneySpent),
+        Number(formData.emotionalDamage),
+        Number(formData.betrayal)
+      );
+      formData.compensation = cal;
+
+      const response = await addMessage(formData);
+
+      if (response.status !== 200) throw new Error(response.message);
+
+      reset();
+      router.push(`/generate/success?id=${response.data?.id}`);
     } catch (error) {
       console.log(error);
     }

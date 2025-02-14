@@ -16,6 +16,7 @@ export const formValidator = z.object({
     .min(0, { message: "Cannot be less than 0" })
     .max(5, { message: "Can't be higher than 5" }),
   reason: z.string().min(1, { message: "Reason for breakup is required" }),
+  compensation: z.number().optional(),
 });
 
 export type formValidatorType = z.infer<typeof formValidator>;
